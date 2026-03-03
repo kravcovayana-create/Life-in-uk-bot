@@ -437,10 +437,8 @@ async def send_question(query, context):
     [f"*{chr(65+i)})* {opt}" for i, opt in enumerate(question["options"])]
 )
 
-keyboard = [
-    [InlineKeyboardButton(chr(65+i), callback_data=str(i))
-     for i in range(len(question["options"]))]
-]
+keyboard = [[InlineKeyboardButton(chr(65+i), callback_data=str(i)) for i in range(len(question["options"]))]]
+
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
