@@ -445,7 +445,6 @@ keyboard = [
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     await query.edit_message_text(
-        await query.edit_message_text(
     f"📝 *Вопрос {q_index + 1} из {total}*\n\n"
     f"*{question['question']}*\n"
     f"_{question['translation']}_\n\n"
