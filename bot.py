@@ -442,7 +442,7 @@ keyboard = [[InlineKeyboardButton(chr(65+i), callback_data=str(i)) for i in rang
 
 reply_markup = InlineKeyboardMarkup(keyboard)
 
-    await query.edit_message_text(
+await query.edit_message_text(
     f"📝 *Вопрос {q_index + 1} из {total}*\n\n"
     f"*{question['question']}*\n"
     f"_{question['translation']}_\n\n"
@@ -461,4 +461,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import asyncio
+    asyncio.run(main())
