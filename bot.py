@@ -440,7 +440,7 @@ async def send_question(query, context):
 keyboard = [[InlineKeyboardButton(chr(65+i), callback_data=str(i)) for i in range(len(question["options"]))]]
 
 
-    reply_markup = InlineKeyboardMarkup(keyboard)
+reply_markup = InlineKeyboardMarkup(keyboard)
 
     await query.edit_message_text(
     f"📝 *Вопрос {q_index + 1} из {total}*\n\n"
