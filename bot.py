@@ -433,19 +433,27 @@ async def send_question(query, context):
     question = TESTS[test_num][q_index]
     total = len(TESTS[test_num])
 
-    keyboard = [
-        [InlineKeyboardButton(option, callback_data=f"answer_{i}")]
-        for i, option in enumerate(question["options"])
-    ]
+    options_text = "\n".join(
+    [f"*{chr(65+i)})* {opt}" for i, opt in enumerate(question["options"])]
+)
+
+keyboard = [
+    [InlineKeyboardButton(chr(65+i), callback_data=str(i))
+     for i in range(len(question["options"]))]
+]
+
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     await query.edit_message_text(
-        f"📝 *Вопрос {q_index + 1} из {total}*\n\n"
-        f"*{question['question']}*\n\n"
-        f"_{question['translation']}_",
-        reply_markup=reply_markup,
-        parse_mode="Markdown"
-    )
+        await query.edit_message_text(
+    f"📝 *Вопрос {q_index + 1} из {total}*\n\n"
+    f"*{question['question']}*\n"
+    f"_{question['translation']}_\n\n"
+    f"{options_text}",
+    reply_markup=reply_markup,
+    parse_mode="Markdown"
+)
+
 
 
 def main():
